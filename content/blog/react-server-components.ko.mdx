@@ -1,0 +1,46 @@
+---
+title: "React 서버 컴포넌트 설명"
+description: "RSC가 React 앱을 구축하는 방식을 어떻게 바꾸는지 실용적으로 살펴봅니다."
+date: "2026-04-07"
+tags: ["React", "Next.js", "Architecture"]
+---
+
+React 서버 컴포넌트(RSC)는 훅 이후 React 모델에 가장 중요한 변화 중 하나입니다. 컴포넌트를 서버에서 렌더링할 수 있게 해주며, 빌드 시뿐만 아니라 매 요청마다 실행되고, 해당 컴포넌트의 코드를 브라우저에 전혀 전송하지 않습니다.
+
+## RSC가 SSR과 다른 점은?
+
+기존 SSR은 전체 React 트리를 서버에서 HTML로 렌더링한 후 클라이언트에서 하이드레이션합니다. 모든 컴포넌트가 JavaScript 번들에 포함됩니다.
+
+RSC는 다음과 같은 구분을 도입합니다:
+
+- **서버 컴포넌트**는 서버에서만 실행됩니다. 출력은 직렬화되어 클라이언트로 전송됩니다. JS를 전혀 전송하지 않습니다.
+- **클라이언트 컴포넌트**는 `'use client'`로 표시되며 기존 React처럼 동작합니다.
+
+## 간단한 예제
+
+```tsx
+// app/dashboard/page.tsx — 서버 컴포넌트 (기본값)
+import { db } from '@/lib/db'
+import { MetricsCard } from './metrics-card' // 클라이언트 컴포넌트
+
+export default async function Dashboard() {
+  const metrics = await db.query('SELECT * FROM metrics')
+  return <MetricsCard data={metrics} />
+}
+```
+
+`Dashboard` 컴포넌트는 직접 데이터를 가져옵니다 — `useEffect`나 API 라우트가 필요 없습니다.
+
+## 언제 어떤 것을 사용할까
+
+| 사용 사례 | 컴포넌트 타입 |
+|---|---|
+| DB 또는 API에서 데이터 가져오기 | 서버 |
+| `useState` 또는 `useEffect` 사용 | 클라이언트 |
+| 브라우저 API 접근 | 클라이언트 |
+| 정적 콘텐츠 렌더링 | 서버 |
+| 이벤트 핸들러 사용 | 클라이언트 |
+
+## 실질적 영향
+
+RSC는 데이터가 많은 페이지의 번들 크기를 크게 줄입니다. 이전에 ~200kB의 데이터 가져오기 로직을 클라이언트로 전송하던 대시보드 페이지가 이제는 아무것도 전송하지 않습니다.

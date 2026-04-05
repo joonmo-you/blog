@@ -1,0 +1,52 @@
+---
+title: "React Server Components Explained"
+description: "A practical look at how RSC changes the way we build React apps."
+date: "2026-04-07"
+tags: ["React", "Next.js", "Architecture"]
+---
+
+React Server Components (RSC) are one of the most significant changes to the React model since hooks. They let you render components on the server — not just at build time, but on every request — without shipping any of that component's code to the browser.
+
+## What makes RSC different from SSR?
+
+Traditional SSR renders your entire React tree to HTML on the server, then hydrates it on the client. Every component ends up in the JavaScript bundle.
+
+RSC introduces a distinction:
+
+- **Server Components** run only on the server. Their output is serialized and sent to the client as a special format. Zero JS shipped.
+- **Client Components** are marked with `'use client'` and behave like traditional React — they render on the server for the initial HTML, then hydrate.
+
+## A simple example
+
+```tsx
+// app/dashboard/page.tsx — Server Component (default)
+import { db } from '@/lib/db'
+import { MetricsCard } from './metrics-card' // Client Component
+
+export default async function Dashboard() {
+  const metrics = await db.query('SELECT * FROM metrics')
+  return <MetricsCard data={metrics} />
+}
+```
+
+The `Dashboard` component fetches data directly — no `useEffect`, no API route needed. `MetricsCard` can still be interactive because it's a Client Component.
+
+## When to use which
+
+| Use case | Component type |
+|---|---|
+| Fetch data from DB or API | Server |
+| Use `useState` or `useEffect` | Client |
+| Access browser APIs | Client |
+| Render static content | Server |
+| Use event handlers | Client |
+
+## The boundary
+
+The key mental model is the **server/client boundary**. You cross it with `'use client'`. Once you cross it, everything below is a client component — even if it doesn't import `'use client'` itself.
+
+This is why you often see patterns like passing server-fetched data as props into a client shell component.
+
+## Practical impact
+
+RSC significantly reduces bundle sizes for data-heavy pages. In our experience, dashboard pages that previously shipped ~200kB of data-fetching logic to the client now ship nothing.
