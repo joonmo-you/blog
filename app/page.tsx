@@ -10,7 +10,7 @@ export default function HomePage() {
     <div className="container mx-auto max-w-4xl px-4 py-16 space-y-20">
       {/* Hero */}
       <section className="space-y-4">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">Hi, I&apos;m Joonmo</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">This is Joonmo</h1>
         <p className="text-xl text-muted-foreground max-w-2xl">
           Current: Web developer.
           <br />
