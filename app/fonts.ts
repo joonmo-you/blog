@@ -1,6 +1,6 @@
 import { Electrolize, Geist, Geist_Mono } from "next/font/google";
 
-export const elec = Electrolize({
+export const electrolize = Electrolize({
   subsets: ["latin"],
   preload: true,
   weight: ["400"],
