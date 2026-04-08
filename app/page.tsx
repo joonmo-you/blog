@@ -18,7 +18,7 @@ export default function HomePage() {
           <br />
           Text addict, yeah… I judge books by the cover and still get hooked.
           <br />
-          Trying to quit work and spend the rest of my life reading books, making music here and there.
+          Drawn to a life of late-night pages and occasional beats.
         </p>
         <p className="mt-2 text-xl text-muted-foreground max-w-2xl">
           Code, caffeine, words, and music.
