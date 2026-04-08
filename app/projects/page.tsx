@@ -13,13 +13,13 @@ const PROJECTS = [
 
 export default function ProjectsPage() {
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-12 space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
-        <p className="text-muted-foreground">Side projects and open-source work.</p>
+    <div className="container-fluid py-[var(--sp-12)] space-y-[var(--sp-8)]">
+      <div className="space-y-[var(--sp-2)]">
+        <h1 className="text-fluid-3xl font-bold tracking-tight">Projects</h1>
+        <p className="text-fluid-base text-muted-foreground">Side projects and open-source work.</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-auto-fill-md gap-[var(--sp-4)]">
         {PROJECTS.map((project) => (
           <a
             key={project.name}
@@ -28,15 +28,15 @@ export default function ProjectsPage() {
             rel="noopener noreferrer"
             className="group block rounded-lg border p-5 hover:shadow-md transition-shadow"
           >
-            <h2 className="font-semibold group-hover:text-primary transition-colors">
+            <h2 className="text-fluid-base font-semibold group-hover:text-primary transition-colors">
               {project.name}
             </h2>
-            <p className="mt-1 text-sm text-muted-foreground">{project.description}</p>
+            <p className="mt-1 text-fluid-sm text-muted-foreground">{project.description}</p>
             <div className="mt-3 flex flex-wrap gap-1">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded bg-secondary text-secondary-foreground px-2 py-0.5 text-xs"
+                  className="rounded bg-secondary text-secondary-foreground px-2 py-0.5 text-fluid-xs"
                 >
                   {tag}
                 </span>
