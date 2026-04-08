@@ -7,11 +7,11 @@ export default function HomePage() {
   const books = getAllBooks("en").slice(0, 3);
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-16 space-y-20">
+    <div className="container-fluid py-[var(--sp-16)] space-y-[var(--sp-20)]">
       {/* Hero */}
-      <section className="space-y-4">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">This is Joonmo</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl">
+      <section className="space-y-[var(--sp-4)]">
+        <h1 className="text-fluid-5xl font-extrabold tracking-tight">This is Joonmo</h1>
+        <p className="text-fluid-xl text-muted-foreground max-w-2xl">
           Current: Web developer.
           <br />
           Fueled by good coffee — not optional, essential.
@@ -20,20 +20,20 @@ export default function HomePage() {
           <br />
           Drawn to a life of late-night pages and occasional beats.
         </p>
-        <p className="mt-2 text-xl text-muted-foreground max-w-2xl">
+        <p className="mt-2 text-fluid-xl text-muted-foreground max-w-2xl">
           Code, caffeine, words, and music.
           <br />
-          That’s the loop I live in.
+          That's the loop I live in.
         </p>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-[var(--sp-2)]">
           <Link
             href="/blog"
-            className="inline-flex items-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors">
+            className="inline-flex items-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-fluid-sm font-medium hover:bg-primary/90 transition-colors">
             Read the blog
           </Link>
           <Link
             href="/about"
-            className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors">
+            className="inline-flex items-center rounded-md border px-4 py-2 text-fluid-sm font-medium hover:bg-accent transition-colors">
             About me
           </Link>
         </div>
@@ -41,14 +41,14 @@ export default function HomePage() {
 
       {/* Recent Posts */}
       {posts.length > 0 && (
-        <section className="space-y-6">
+        <section className="space-y-[var(--sp-6)]">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold">Recent Posts</h2>
-            <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <h2 className="text-fluid-2xl font-semibold">Recent Posts</h2>
+            <Link href="/blog" className="text-fluid-sm text-muted-foreground hover:text-foreground transition-colors">
               View all →
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-auto-fill-md gap-[var(--sp-4)]">
             {posts.map((post) => (
               <PostCard key={post.slug} slug={post.slug} frontmatter={post.frontmatter} href={`/blog/${post.slug}`} />
             ))}
@@ -58,14 +58,14 @@ export default function HomePage() {
 
       {/* Recent Books */}
       {books.length > 0 && (
-        <section className="space-y-6">
+        <section className="space-y-[var(--sp-6)]">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold">Recent Book Reviews</h2>
-            <Link href="/books" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <h2 className="text-fluid-2xl font-semibold">Recent Book Reviews</h2>
+            <Link href="/books" className="text-fluid-sm text-muted-foreground hover:text-foreground transition-colors">
               View all →
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-auto-fill-md gap-[var(--sp-4)]">
             {books.map((book) => (
               <BookCard key={book.slug} slug={book.slug} frontmatter={book.frontmatter} href={`/books/${book.slug}`} />
             ))}

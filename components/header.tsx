@@ -18,11 +18,11 @@ export function Header() {
   const pathname = usePathname();
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className={`container mx-auto flex h-14 max-w-4xl items-center px-4 ${electrolize.className}`}>
-        <Link href="/" className="mr-6 font-bold tracking-tight">
+      <div className={`container-fluid flex min-h-[3.5rem] flex-wrap items-center gap-x-6 gap-y-1 py-2 ${electrolize.className}`}>
+        <Link href="/" className="text-fluid-base font-bold tracking-tight">
           joonmo.you
         </Link>
-        <nav className="flex flex-1 items-center gap-4 text-sm">
+        <nav className="flex flex-1 flex-wrap items-center gap-[var(--sp-2)] text-fluid-sm">
           {NAV_LINKS.map(({ href, label }) => (
             <Link
               key={href}
