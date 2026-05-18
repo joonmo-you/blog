@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const book = getBookBySlug(slug, 'en')
+  const book = getBookBySlug(slug, 'ko')
   if (!book) return {}
   return {
     title: book.frontmatter.title,
@@ -24,11 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BookReviewPage({ params }: Props) {
   const { slug } = await params
 
-  const enBook = getBookBySlug(slug, 'en')
-  if (!enBook) notFound()
+  const book = getBookBySlug(slug, 'ko')
+  if (!book) notFound()
 
-  const koBook = getBookBySlug(slug, 'ko')
-  const { frontmatter } = enBook
+  const { frontmatter, content } = book
 
   return (
     <div className="container-fluid max-w-3xl py-[var(--sp-12)]">
@@ -51,14 +50,11 @@ export default async function BookReviewPage({ params }: Props) {
         </p>
         <p className="text-fluid-base text-muted-foreground">{frontmatter.description}</p>
         <time className="text-fluid-sm text-muted-foreground">
-          {format(new Date(frontmatter.date), 'MMMM d, yyyy')}
+          {format(new Date(frontmatter.date), 'yyyy년 M월 d일')}
         </time>
       </div>
 
-      <LocalizedContent
-        enContent={enBook.content}
-        koContent={koBook?.content ?? null}
-      />
+      <LocalizedContent content={content} />
     </div>
   )
 }

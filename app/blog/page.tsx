@@ -5,17 +5,8 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = { title: 'Blog' }
 
 export default function BlogPage() {
-  const enPosts = getAllPosts('en')
-  const koPosts = getAllPosts('ko')
-  const enTags = getAllTags('en')
-  const koTags = getAllTags('ko')
+  const posts = getAllPosts('ko')
+  const tags = getAllTags('ko')
 
-  return (
-    <BlogListing
-      enPosts={enPosts}
-      koPosts={koPosts}
-      enTags={enTags}
-      koTags={koTags}
-    />
-  )
+  return <BlogListing posts={posts} tags={tags} />
 }

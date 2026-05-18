@@ -35,8 +35,8 @@ export function getPostBySlug(slug: string, lang: Lang): Post | null {
 export function getAllPostSlugs(): string[] {
   const dir = path.join(CONTENT_DIR, 'blog')
   return getFiles(dir)
-    .filter((f) => f.endsWith('.en.mdx'))
-    .map((f) => f.replace('.en.mdx', ''))
+    .filter((f) => f.endsWith('.ko.mdx'))
+    .map((f) => f.replace('.ko.mdx', ''))
 }
 
 // ── Book reviews ─────────────────────────────────────────────────────────────
@@ -64,8 +64,8 @@ export function getBookBySlug(slug: string, lang: Lang): Book | null {
 export function getAllBookSlugs(): string[] {
   const dir = path.join(CONTENT_DIR, 'books')
   return getFiles(dir)
-    .filter((f) => f.endsWith('.en.mdx'))
-    .map((f) => f.replace('.en.mdx', ''))
+    .filter((f) => f.endsWith('.ko.mdx'))
+    .map((f) => f.replace('.ko.mdx', ''))
 }
 
 // ── Tags ─────────────────────────────────────────────────────────────────────

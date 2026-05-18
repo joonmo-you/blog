@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getPostBySlug(slug, 'en')
+  const post = getPostBySlug(slug, 'ko')
   if (!post) return {}
   return {
     title: post.frontmatter.title,
@@ -24,11 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
 
-  const enPost = getPostBySlug(slug, 'en')
-  if (!enPost) notFound()
+  const post = getPostBySlug(slug, 'ko')
+  if (!post) notFound()
 
-  const koPost = getPostBySlug(slug, 'ko')
-  const frontmatter = enPost.frontmatter
+  const { frontmatter, content } = post
 
   return (
     <div className="container-fluid max-w-3xl py-[var(--sp-12)]">
@@ -45,14 +44,11 @@ export default async function BlogPostPage({ params }: Props) {
         </h1>
         <p className="text-fluid-base text-muted-foreground">{frontmatter.description}</p>
         <time className="text-fluid-sm text-muted-foreground">
-          {format(new Date(frontmatter.date), 'MMMM d, yyyy')}
+          {format(new Date(frontmatter.date), 'yyyy년 M월 d일')}
         </time>
       </div>
 
-      <LocalizedContent
-        enContent={enPost.content}
-        koContent={koPost?.content ?? null}
-      />
+      <LocalizedContent content={content} />
     </div>
   )
 }

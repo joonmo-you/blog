@@ -11,24 +11,15 @@ const MDX_OPTIONS = {
 }
 
 interface LocalizedContentProps {
-  enContent: string
-  koContent: string | null
+  content: string
 }
 
-export async function LocalizedContent({ enContent, koContent }: LocalizedContentProps) {
+export async function LocalizedContent({ content }: LocalizedContentProps) {
   const components = useMDXComponents({})
 
   return (
-    <div className="mdx-body">
-      {/* lang visibility is controlled via CSS + html[data-lang] attribute */}
-      <article data-lang-content="en">
-        <MDXRemote source={enContent} components={components} options={MDX_OPTIONS} />
-      </article>
-      {koContent && (
-        <article data-lang-content="ko">
-          <MDXRemote source={koContent} components={components} options={MDX_OPTIONS} />
-        </article>
-      )}
-    </div>
+    <article className="mdx-body">
+      <MDXRemote source={content} components={components} options={MDX_OPTIONS} />
+    </article>
   )
 }

@@ -1,4 +1,4 @@
-export type Lang = 'en' | 'ko'
+export type Lang = 'ko'
 
 export interface PostFrontmatter {
   title: string

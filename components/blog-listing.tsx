@@ -1,23 +1,17 @@
 'use client'
 
 import { useState } from 'react'
-import { useLang } from '@/context/lang-context'
 import { PostCard } from '@/components/post-card'
 import { TagFilter } from '@/components/tag-filter'
 import { SearchBar } from '@/components/search-bar'
 import type { Post } from '@/lib/types'
 
 interface BlogListingProps {
-  enPosts: Post[]
-  koPosts: Post[]
-  enTags: string[]
-  koTags: string[]
+  posts: Post[]
+  tags: string[]
 }
 
-export function BlogListing({ enPosts, koPosts, enTags, koTags }: BlogListingProps) {
-  const { lang } = useLang()
-  const posts = lang === 'ko' ? koPosts : enPosts
-  const tags = lang === 'ko' ? koTags : enTags
+export function BlogListing({ posts, tags }: BlogListingProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
 
   const filtered = selectedTag
@@ -29,9 +23,7 @@ export function BlogListing({ enPosts, koPosts, enTags, koTags }: BlogListingPro
       <div className="space-y-[var(--sp-2)]">
         <h1 className="text-fluid-3xl font-bold tracking-tight">Blog</h1>
         <p className="text-fluid-base text-muted-foreground">
-          {lang === 'ko'
-            ? '프론트엔드 개발, React, TypeScript, 그리고 웹 플랫폼에 관한 글.'
-            : 'Thoughts on frontend development, React, TypeScript, and the web platform.'}
+          프론트엔드 개발, React, TypeScript, 그리고 웹 플랫폼에 관한 글.
         </p>
       </div>
 
@@ -41,9 +33,7 @@ export function BlogListing({ enPosts, koPosts, enTags, koTags }: BlogListingPro
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-muted-foreground text-fluid-sm">
-          {lang === 'ko' ? '게시물이 없습니다.' : 'No posts found.'}
-        </p>
+        <p className="text-muted-foreground text-fluid-sm">게시물이 없습니다.</p>
       ) : (
         <div className="grid grid-auto-fill-md gap-[var(--sp-4)]">
           {filtered.map((post) => (

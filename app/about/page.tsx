@@ -16,9 +16,6 @@ export default function AboutPage() {
           I write about things I learn in my day-to-day work — component design, performance, accessibility, and
           developer experience. I also read a lot and share brief reviews here.
         </p>
-        <p className="text-fluid-base leading-7 text-muted-foreground">
-          This blog is bilingual. You can switch between English and Korean using the toggle in the header.
-        </p>
       </div>
     </div>
   );

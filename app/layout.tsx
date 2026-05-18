@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ko" data-lang="ko" suppressHydrationWarning>
       <head>
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
@@ -35,12 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/manifest.json" />
-        {/* Set data-lang before paint to avoid language flash */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{var l=localStorage.getItem('lang');if(l==='ko')document.documentElement.dataset.lang='ko';else document.documentElement.dataset.lang='en';}catch(e){}`,
-          }}
-        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
