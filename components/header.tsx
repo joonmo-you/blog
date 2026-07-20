@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { electrolize } from "@/app/fonts";
 
 const NAV_LINKS = [
-  { href: "/blog", label: "Blog" },
+  { href: "/dev", label: "Dev" },
   { href: "/books", label: "Books" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
@@ -52,8 +52,7 @@ export function Header() {
             size="icon"
             className="min-[450px]:hidden"
             aria-label="Toggle menu"
-            onClick={() => setOpen((v) => !v)}
-          >
+            onClick={() => setOpen((v) => !v)}>
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>
         </div>

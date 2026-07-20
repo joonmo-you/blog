@@ -3,8 +3,8 @@ import { getAllPosts, getAllBooks } from "@/lib/content";
 import { PostCard, BookCard } from "@/components/post-card";
 
 export default function HomePage() {
-  const posts = getAllPosts("en").slice(0, 3);
-  const books = getAllBooks("en").slice(0, 3);
+  const posts = getAllPosts("ko").slice(0, 3);
+  const books = getAllBooks("ko").slice(0, 3);
 
   return (
     <div className="container-fluid py-[var(--sp-16)] space-y-[var(--sp-20)]">
@@ -27,7 +27,7 @@ export default function HomePage() {
         </p>
         <div className="flex flex-wrap gap-[var(--sp-2)]">
           <Link
-            href="/blog"
+            href="/dev"
             className="inline-flex items-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-fluid-sm font-medium hover:bg-primary/90 transition-colors">
             Read the blog
           </Link>
@@ -44,13 +44,13 @@ export default function HomePage() {
         <section className="space-y-[var(--sp-6)]">
           <div className="flex items-center justify-between">
             <h2 className="text-fluid-2xl font-semibold">Recent Posts</h2>
-            <Link href="/blog" className="text-fluid-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/dev" className="text-fluid-sm text-muted-foreground hover:text-foreground transition-colors">
               View all →
             </Link>
           </div>
           <div className="grid grid-auto-fill-md gap-[var(--sp-4)]">
             {posts.map((post) => (
-              <PostCard key={post.slug} slug={post.slug} frontmatter={post.frontmatter} href={`/blog/${post.slug}`} />
+              <PostCard key={post.slug} slug={post.slug} frontmatter={post.frontmatter} href={`/dev/${post.slug}`} />
             ))}
           </div>
         </section>
